@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reporte Semana 1 · Laura Rojas · FrioPacking 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2456;
+  --blue:#1a3d8f;
+  --teal:#3ecfbf;
+  --teal-d:#2aafa0;
+  --white:#fff;
+  --g50:#f8fafc;
+  --g100:#f1f5f9;
+  --g200:#e2e8f0;
+  --g400:#94a3b8;
+  --g500:#64748b;
+  --g700:#334155;
+  --g900:#0f172a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--g700);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:60px;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(62,207,191,0.2);
+}
+.nav-left{display:flex;align-items:center;gap:14px}
+.nav-logo{height:32px}
+.nav-sep{width:1px;height:22px;background:rgba(13,36,86,.15)}
+.nav-tag{font-size:11px;color:rgba(13,36,86,.45);letter-spacing:.5px}
+.nav-links{display:flex;gap:24px}
+.nav-links a{
+  color:rgba(13,36,86,.5);text-decoration:none;
+  font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:58% 42%;
+  background:var(--navy);
+  padding-top:60px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 60%, rgba(62,207,191,.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 10%, rgba(26,61,143,.5) 0%, transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 56px;position:relative;z-index:2;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(62,207,191,.1);border:1px solid rgba(62,207,191,.22);
+  border-radius:4px;padding:5px 14px;margin-bottom:28px;width:fit-content;
+  font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--teal);
+  opacity:0;animation:up .6s ease forwards .15s;
+}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-label{
+  font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-bottom:14px;
+  opacity:0;animation:up .6s ease forwards .3s;
+}
+.hero-title{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(34px,4.2vw,54px);font-weight:700;
+  color:var(--white);line-height:1.08;margin-bottom:10px;
+  opacity:0;animation:up .6s ease forwards .45s;
+}
+.hero-title em{color:var(--teal);font-style:normal}
+.hero-name{
+  font-size:15px;color:rgba(255,255,255,.55);font-weight:400;margin-bottom:6px;
+  opacity:0;animation:up .6s ease forwards .55s;
+}
+.hero-date{
+  font-size:12px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-bottom:36px;
+  opacity:0;animation:up .6s ease forwards .62s;
+}
+.hero-intro{
+  font-size:14px;line-height:1.8;color:rgba(255,255,255,.55);font-weight:300;
+  max-width:420px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07);
+  margin-bottom:36px;
+  opacity:0;animation:up .6s ease forwards .75s;
+}
+.hero-intro strong{color:rgba(255,255,255,.8);font-weight:500}
+.hero-btn{
+  display:inline-flex;align-items:center;gap:9px;width:fit-content;
+  background:var(--teal);color:var(--navy);
+  padding:12px 26px;border-radius:4px;font-size:12px;font-weight:700;
+  text-decoration:none;letter-spacing:.5px;transition:all .2s;
+  opacity:0;animation:up .6s ease forwards .88s;
+}
+.hero-btn:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 28px rgba(62,207,191,.3)}
+
+.hero-right{
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:0 40px;position:relative;z-index:2;
+}
+.photo-wrap{
+  position:relative;max-width:340px;width:100%;
+  opacity:0;animation:up .8s ease forwards .55s;
+}
+.photo-wrap img{
+  width:100%;display:block;
+  border-radius:10px 10px 0 0;
+}
+.photo-card{
+  position:absolute;bottom:32px;right:-16px;
+  background:rgba(13,36,86,.95);border:1px solid rgba(62,207,191,.2);
+  border-radius:8px;padding:14px 18px;backdrop-filter:blur(20px);
+  min-width:200px;
+}
+.pc-name{font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--white);margin-bottom:2px}
+.pc-role{font-size:11px;color:var(--teal);font-weight:600;margin-bottom:2px}
+.pc-mail{font-size:11px;color:rgba(255,255,255,.35)}
+
+
+.hero-right{
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:0 40px;position:relative;z-index:2;
+}
+.photo-wrap{
+  position:relative;max-width:320px;width:100%;
+  opacity:0;animation:up .8s ease forwards .55s;
+}
+.photo-wrap img{
+  width:100%;display:block;
+  border-radius:10px 10px 0 0;
+}
+.photo-card{
+  position:absolute;bottom:32px;right:-16px;
+  background:rgba(13,36,86,.95);border:1px solid rgba(62,207,191,.2);
+  border-radius:8px;padding:14px 18px;backdrop-filter:blur(20px);
+  min-width:190px;
+}
+.pc-name{font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--white);margin-bottom:2px}
+.pc-role{font-size:11px;color:var(--teal);font-weight:600;margin-bottom:2px}
+.pc-mail{font-size:11px;color:rgba(255,255,255,.35)}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS SHARED */
+section{padding:88px 10vw}
+.sl{
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.sl::before{content:'';display:block;width:18px;height:1px;background:var(--teal)}
+.sh{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(24px,2.8vw,36px);font-weight:700;
+  color:var(--navy);line-height:1.15;margin-bottom:10px;
+}
+.sd{font-size:14px;color:var(--g400);line-height:1.7;max-width:500px;margin-bottom:44px}
+
+/* SOBRE MÍ */
+#sobre{background:var(--g50)}
+.sobre-wrap{
+  display:flex;align-items:center;gap:32px;
+  max-width:780px;
+  background:var(--white);border:1px solid var(--g200);border-radius:12px;
+  padding:32px 36px;
+}
+.sobre-avatar{
+  width:64px;height:64px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:2px solid var(--teal);
+}
+.sobre-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+.sobre-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--teal)}
+.sobre-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+.sobre-info h3{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.sobre-info p{font-size:14px;color:var(--g500);line-height:1.6;margin-bottom:12px}
+.sobre-tags{display:flex;flex-wrap:wrap;gap:8px}
+.stag{
+  font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:4px 12px;border-radius:3px;background:var(--g100);
+  border:1px solid var(--g200);color:var(--g500);
+}
+
+/* RESUMEN */
+#resumen{background:var(--white)}
+.res-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:840px;margin-bottom:40px}
+.rc{
+  background:var(--g50);border:1px solid var(--g200);border-radius:10px;
+  padding:24px 22px;transition:all .25s;
+}
+.rc:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 8px 24px rgba(62,207,191,.1)}
+.rc-n{
+  font-family:'Sora',sans-serif;font-size:40px;font-weight:700;
+  color:var(--navy);line-height:1;margin-bottom:6px;
+}
+.rc-s{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--g400)}
+.res-tags{display:flex;flex-wrap:wrap;gap:8px;max-width:840px}
+.rtag{
+  font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  padding:5px 14px;border-radius:3px;border:1px solid var(--g200);
+  color:var(--g500);background:var(--g50);cursor:default;transition:all .2s;
+}
+.rtag:hover{border-color:var(--teal);color:var(--teal);background:rgba(62,207,191,.05)}
+
+/* TIMELINE */
+#timeline{background:var(--g50)}
+.tl-wrap{max-width:800px;position:relative}
+.tl-line{
+  position:absolute;left:27px;top:20px;bottom:20px;width:2px;
+  background:linear-gradient(to bottom,var(--teal),var(--blue),transparent);
+}
+.day{position:relative;padding-left:72px;margin-bottom:16px}
+.day-dot{
+  position:absolute;left:19px;top:22px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--white);border:2px solid var(--g200);
+  transition:all .3s;z-index:2;
+}
+.day.open .day-dot{background:var(--teal);border-color:var(--teal);box-shadow:0 0 0 5px rgba(62,207,191,.15)}
+.day-btn{
+  width:100%;text-align:left;cursor:pointer;
+  background:var(--white);border:1px solid var(--g200);border-radius:10px;
+  padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
+  transition:all .25s;
+}
+.day-btn:hover{border-color:var(--teal)}
+.day.open .day-btn{background:var(--navy);border-color:var(--navy)}
+.dl{display:flex;flex-direction:column;gap:2px}
+.d-num{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal)}
+.d-date{font-size:10px;color:var(--g400);font-weight:500;letter-spacing:1px}
+.d-title{font-family:'Sora',sans-serif;font-size:16px;font-weight:600;color:var(--navy)}
+.day.open .d-title,.day.open .d-date{color:rgba(255,255,255,.5)}
+.day.open .d-title{color:var(--white)}
+.d-arrow{font-size:14px;color:var(--g400);transition:transform .3s;flex-shrink:0}
+.day.open .d-arrow{transform:rotate(180deg);color:var(--teal)}
+.day-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .35s ease,margin .3s;margin-top:0}
+.day.open .day-body{max-height:900px;opacity:1;margin-top:10px}
+.day-inner{
+  background:var(--white);border:1px solid var(--g200);border-radius:10px;
+  padding:26px 30px;display:grid;grid-template-columns:1fr 1fr;gap:22px;
+}
+.di-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:12px}
+.di-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.di-list li{font-size:13px;color:var(--g500);line-height:1.5;padding-left:14px;position:relative}
+.di-list li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:10px;top:3px}
+.di-reflection{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,rgba(62,207,191,.05),rgba(26,61,143,.03));
+  border-left:3px solid var(--teal);border-radius:0 8px 8px 0;
+  padding:16px 20px;font-size:13px;color:var(--g500);line-height:1.7;font-style:italic;
+}
+.di-tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:7px}
+.di-tag{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:3px;background:var(--g100);color:var(--g500)}
+
+/* APRENDIZAJES */
+#aprendizajes{background:var(--white)}
+.ap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:840px}
+.apc{
+  background:var(--g50);border:1px solid var(--g200);border-radius:12px;
+  padding:28px;transition:all .3s;position:relative;overflow:hidden;
+}
+.apc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--blue));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.apc:hover::before{transform:scaleX(1)}
+.apc:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(26,61,143,.09);background:var(--white)}
+.ap-icon{font-size:26px;margin-bottom:12px}
+.apc h3{font-family:'Sora',sans-serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:14px}
+.ap-items{display:flex;flex-direction:column;gap:9px}
+.ap-row{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--g500);line-height:1.5}
+.ap-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px}
+
+/* PERSONAS */
+#personas{background:var(--g50)}
+.pe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:940px}
+.pec{
+  background:var(--white);border:1px solid var(--g200);border-radius:12px;
+  padding:22px 20px;transition:all .25s;
+}
+.pec:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 8px 28px rgba(62,207,191,.1)}
+.pe-av{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--navy));
+  display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:14px;
+}
+.pe-name{font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.pe-role{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-bottom:3px}
+.pe-area{font-size:11px;color:var(--g400);margin-bottom:12px}
+.pe-div{height:1px;background:var(--g200);margin-bottom:12px}
+.pe-ls{display:flex;flex-direction:column;gap:6px}
+.pe-l{font-size:12px;color:var(--g500);line-height:1.45;padding-left:11px;position:relative}
+.pe-l::before{content:'·';position:absolute;left:0;color:var(--teal);font-weight:900}
+
+/* REFLEXIONES */
+#reflexiones{background:var(--navy)}
+#reflexiones .sh{color:var(--white)}
+#reflexiones .sd{color:rgba(255,255,255,.4)}
+.rf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:840px}
+.rfc{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:28px;transition:all .3s;
+}
+.rfc:hover{background:rgba(255,255,255,.07);border-color:rgba(62,207,191,.25);transform:translateY(-3px)}
+.rf-cat{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.rf-cat::before{content:'';display:block;width:14px;height:1px;background:var(--teal)}
+.rfc blockquote{
+  font-family:'Sora',sans-serif;font-size:16px;font-weight:400;
+  color:var(--white);line-height:1.55;font-style:italic;
+}
+
+/* REFLEXION FINAL */
+#final{background:var(--g50)}
+.fn-grid{display:grid;grid-template-columns:3fr 2fr;gap:44px;max-width:880px;align-items:start}
+.fn-txt{font-size:14px;line-height:1.85;color:var(--g500);font-weight:300}
+.fn-txt strong{color:var(--g700);font-weight:600}
+.fn-txt p+p{margin-top:16px}
+.fn-side{display:flex;flex-direction:column;gap:12px}
+.fnc{
+  background:var(--white);border:1px solid var(--g200);border-radius:8px;
+  padding:16px 18px;transition:all .25s;
+}
+.fnc:hover{border-color:var(--teal);transform:translateX(4px)}
+.fnc-h{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.fnc-s{font-size:12px;color:var(--g400);line-height:1.5}
+
+/* PRÓXIMOS */
+#proximos{background:var(--white)}
+.px-list{display:flex;flex-direction:column;gap:14px;max-width:700px}
+.pxi{
+  display:flex;align-items:flex-start;gap:20px;
+  background:var(--g50);border:1px solid var(--g200);border-radius:10px;
+  padding:20px 24px;transition:all .25s;
+}
+.pxi:hover{border-color:var(--teal);background:rgba(62,207,191,.03);transform:translateX(5px)}
+.px-n{
+  font-family:'Sora',sans-serif;font-size:26px;font-weight:700;
+  color:var(--g200);line-height:1;flex-shrink:0;min-width:24px;
+}
+.pxi h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.pxi p{font-size:13px;color:var(--g500);line-height:1.6}
+
+/* FOOTER */
+footer{
+  background:var(--navy);padding:40px 10vw;
+  border-top:1px solid rgba(62,207,191,.12);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.ft-l{display:flex;align-items:center;gap:18px}
+.ft-logo{height:26px;filter:brightness(0) invert(1) opacity(.7)}
+.ft-info p{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.ft-info strong{font-size:14px;font-weight:600;color:rgba(255,255,255,.7)}
+.ft-r{display:flex;gap:12px}
+.ft-a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(255,255,255,.4);font-size:11px;text-decoration:none;
+  padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:4px;
+  transition:all .2s;
+}
+.ft-a:hover{color:var(--teal);border-color:rgba(62,207,191,.3)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  nav{padding:0 18px}
+  .nav-links{display:none}
+  section{padding:64px 6vw}
+  .hero-right{display:none}
+  .res-cards,.pe-grid{grid-template-columns:repeat(2,1fr)}
+  .ap-grid,.rf-grid,.fn-grid{grid-template-columns:1fr}
+  .day-inner{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:20px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <img class="nav-logo" src="logo_friopacking.png" alt="Grupo Friopacking"/>
+    <div class="nav-sep"></div>
+    <span class="nav-tag">Reporte Semana 1 · 2026</span>
+  </div>
+  <div class="nav-links">
+    <a href="#sobre">Perfil</a>
+    <a href="#resumen">Resumen</a>
+    <a href="#timeline">Semana</a>
+    <a href="#aprendizajes">Aprendizajes</a>
+    <a href="#personas">Equipo</a>
+    <a href="#reflexiones">Reflexiones</a>
+    <a href="#proximos">Próximos pasos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-pill"><span class="pill-dot"></span>Reporte Ejecutivo · En curso</div>
+    <div class="hero-label">Practicum Industrial · FrioPacking S.A.C. · Lima, Perú</div>
+    <h1 class="hero-title">Semana 1 en<br><em>FrioPacking</em></h1>
+    <p class="hero-name">Laura Rojas · Trainee de Refrigeración Industrial</p>
+    <p class="hero-date">01 / 06 / 2026 — 05 / 06 / 2026</p>
+    <p class="hero-intro">
+      Durante esta primera semana tuve la oportunidad de conocer distintas áreas de FrioPacking —
+      ingeniería, operaciones, finanzas y tecnología — y comprender cómo estas dimensiones
+      se integran para generar <strong>soluciones de valor en la industria de refrigeración industrial</strong>.
+      A través de reuniones con líderes de la empresa, capacitaciones y actividades prácticas,
+      construí una visión inicial del negocio y sus oportunidades.
+    </p>
+    <a class="hero-btn" href="#resumen">Ver resumen ejecutivo ↓</a>
+  </div>
+  </section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="sl">Sobre mí</div>
+  <h2 class="sh">Quién soy</h2>
+  <div class="sobre-wrap rv">
+    
+    <div class="sobre-avatar"><img src="laura_rojas.png" alt="Laura Rojas"/></div>
+    <div class="sobre-info">
+      <h3>Laura Rojas</h3>
+      <p>Estudiante de Ingeniería Biomédica en <strong>Boston University</strong> con concentración en Innovación Tecnológica. Becaria Posse Foundation. Crecí en Perú y llevo más de diez años en Estados Unidos, lo que me ha dado una perspectiva global sobre tecnología, innovación y emprendimiento.</p>
+      <div class="sobre-tags">
+        <span class="stag">Boston University</span>
+        <span class="stag">Biomedical Engineering</span>
+        <span class="stag">Posse Scholar</span>
+        <span class="stag">KTP · VP Standards</span>
+        <span class="stag">Peru · USA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="sl">Resumen ejecutivo</div>
+  <h2 class="sh">La semana en cifras</h2>
+  <div class="res-cards">
+    <div class="rc rv"><div class="rc-n">4</div><div class="rc-s">Días activos</div></div>
+    <div class="rc rv d1"><div class="rc-n">6+</div><div class="rc-s">Reuniones</div></div>
+    <div class="rc rv d2"><div class="rc-n">4</div><div class="rc-s">Áreas conocidas</div></div>
+    <div class="rc rv d3"><div class="rc-n">1</div><div class="rc-s">Business case</div></div>
+  </div>
+  <div class="sl" style="margin-bottom:14px">Temas explorados</div>
+  <div class="res-tags rv">
+    <span class="rtag">Estrategia</span><span class="rtag">Operaciones</span>
+    <span class="rtag">Ingeniería de refrigeración</span><span class="rtag">FrioMamut</span>
+    <span class="rtag">Liderazgo</span><span class="rtag">Servicio al cliente</span>
+    <span class="rtag">Finanzas</span><span class="rtag">Inteligencia Artificial</span>
+    <span class="rtag">Innovación</span><span class="rtag">Aprendizaje continuo</span>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="sl">Actividades por día</div>
+  <h2 class="sh">Línea de tiempo</h2>
+  <p class="sd">Selecciona cada día para ver actividades, aprendizajes y reflexión.</p>
+  <div class="tl-wrap">
+    <div class="tl-line"></div>
+
+    <div class="day rv" onclick="toggleDay(this)">
+      <div class="day-dot"></div>
+      <button class="day-btn">
+        <div class="dl">
+          <span class="d-num">Día 1</span>
+          <span class="d-date">Lunes 01 Jun</span>
+          <span class="d-title">Conociendo FrioPacking y su visión de negocio</span>
+        </div>
+        <span class="d-arrow">↓</span>
+      </button>
+      <div class="day-body">
+        <div class="day-inner">
+          <div><div class="di-head">Actividades</div>
+            <ul class="di-list">
+              <li>Reunión inicial con Andrés (APL) — definición de rol y objetivos del practicum</li>
+              <li>Introducción a las distintas áreas de la empresa</li>
+              <li>Reunión estratégica junto a gerentes de la organización</li>
+              <li>Reunión con Daniel Fuentes, Gerente de Operaciones</li>
+            </ul>
+          </div>
+          <div><div class="di-head">Aprendizajes</div>
+            <ul class="di-list">
+              <li>Integración de ingeniería, operaciones y estrategia en FrioPacking</li>
+              <li>FrioMamut: monitoreo de variables críticas en plantas industriales</li>
+              <li>Equilibrio entre factores técnicos, operativos y comerciales</li>
+              <li>Cómo se evalúan iniciativas tecnológicas dentro de la empresa</li>
+            </ul>
+          </div>
+          <div class="di-reflection">"FrioPacking no se limita al diseño de soluciones de ingeniería — también busca generar valor a través de la tecnología. La discusión sobre FrioMamut permitió observar cómo se desarrolla y evalúa un producto tecnológico dentro de una empresa industrial."</div>
+          <div class="di-tags"><span class="di-tag">Estrategia</span><span class="di-tag">Operaciones</span><span class="di-tag">FrioMamut</span><span class="di-tag">Innovación</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day rv d1" onclick="toggleDay(this)">
+      <div class="day-dot"></div>
+      <button class="day-btn">
+        <div class="dl">
+          <span class="d-num">Día 2</span>
+          <span class="d-date">Martes 02 Jun</span>
+          <span class="d-title">Ingeniería como resolución de problemas</span>
+        </div>
+        <span class="d-arrow">↓</span>
+      </button>
+      <div class="day-body">
+        <div class="day-inner">
+          <div><div class="di-head">Actividades</div>
+            <ul class="di-list">
+              <li>Inducción organizacional</li>
+              <li>Reunión con Pablo, Gerente de Ingeniería</li>
+              <li>Revisión de estructura y funcionamiento del área de Ingeniería</li>
+              <li>Discusión de casos reales y desafíos técnicos de la empresa</li>
+            </ul>
+          </div>
+          <div><div class="di-head">Aprendizajes</div>
+            <ul class="di-list">
+              <li>Colaboración entre especialidades en proyectos de refrigeración</li>
+              <li>Investigación y aprendizaje continuo como base de la ingeniería</li>
+              <li>Aplicaciones reales de termodinámica, transferencia de calor y fluidos</li>
+              <li>La ingeniería es tanto un esfuerzo técnico como un trabajo en equipo</li>
+            </ul>
+          </div>
+          <div class="di-reflection">"La ingeniería no consiste únicamente en aplicar fórmulas, sino en desarrollar soluciones para problemas que muchas veces no tienen una respuesta inmediata. La disposición del equipo para investigar y aprender constantemente es fundamental."</div>
+          <div class="di-tags"><span class="di-tag">Termodinámica</span><span class="di-tag">Transferencia de calor</span><span class="di-tag">Trabajo multidisciplinario</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day rv d2" onclick="toggleDay(this)">
+      <div class="day-dot"></div>
+      <button class="day-btn">
+        <div class="dl">
+          <span class="d-num">Día 3</span>
+          <span class="d-date">Miércoles 03 Jun</span>
+          <span class="d-title">Liderazgo, servicio al cliente y crecimiento empresarial</span>
+        </div>
+        <span class="d-arrow">↓</span>
+      </button>
+      <div class="day-body">
+        <div class="day-inner">
+          <div><div class="di-head">Actividades</div>
+            <ul class="di-list">
+              <li>Reunión con Álvaro, CFO y Gerente General de Frioteam</li>
+              <li>Conversación sobre historia y evolución de FrioPacking y Frioteam</li>
+              <li>Discusión sobre servicio al cliente, liderazgo y crecimiento</li>
+              <li>Planificación de futuras visitas y reuniones con clientes</li>
+            </ul>
+          </div>
+          <div><div class="di-head">Aprendizajes</div>
+            <ul class="di-list">
+              <li>Confianza y honestidad como bases del servicio al cliente</li>
+              <li>Las organizaciones crecen reinventándose con liderazgo y equipo</li>
+              <li>Valor de equipos que integran perfiles técnicos y de gestión</li>
+              <li>Las decisiones financieras impactan directamente el crecimiento</li>
+            </ul>
+          </div>
+          <div class="di-reflection">"Más allá de la excelencia técnica, el liderazgo, la comunicación y las relaciones humanas son fundamentales para el crecimiento de una empresa. Aprender sobre la evolución de FrioPacking mostró cómo las organizaciones pueden salir fortalecidas de períodos difíciles."</div>
+          <div class="di-tags"><span class="di-tag">Liderazgo</span><span class="di-tag">Finanzas</span><span class="di-tag">Servicio al cliente</span><span class="di-tag">Estrategia</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day rv d3" onclick="toggleDay(this)">
+      <div class="day-dot"></div>
+      <button class="day-btn">
+        <div class="dl">
+          <span class="d-num">Día 4</span>
+          <span class="d-date">Jueves 04 Jun</span>
+          <span class="d-title">Inteligencia Artificial, innovación y aprendizaje aplicado</span>
+        </div>
+        <span class="d-arrow">↓</span>
+      </button>
+      <div class="day-body">
+        <div class="day-inner">
+          <div><div class="di-head">Actividades</div>
+            <ul class="di-list">
+              <li>Capacitación intensiva sobre Inteligencia Artificial</li>
+              <li>Exploración de herramientas de IA y casos de uso empresariales</li>
+              <li>Desarrollo de un business case en equipos</li>
+              <li>Creación de propuesta empresarial utilizando herramientas de IA</li>
+            </ul>
+          </div>
+          <div><div class="di-head">Aprendizajes</div>
+            <ul class="di-list">
+              <li>Potencial de la IA para optimizar procesos y apoyar decisiones</li>
+              <li>El valor real depende del uso estratégico que le damos a las herramientas</li>
+              <li>La IA acelera investigación, análisis y generación de ideas</li>
+              <li>Aplicación práctica: business case completo desarrollado en sesión</li>
+            </ul>
+          </div>
+          <div class="di-reflection">"La IA no reemplaza el juicio humano — lo amplifica. Observar su aplicación dentro de un entorno empresarial industrial reforzó el interés por la intersección entre tecnología, liderazgo e innovación."</div>
+          <div class="di-tags"><span class="di-tag">IA</span><span class="di-tag">Business Case</span><span class="di-tag">Productividad</span><span class="di-tag">Innovación</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APRENDIZAJES -->
+<section id="aprendizajes">
+  <div class="sl">Síntesis</div>
+  <h2 class="sh">Aprendizajes principales</h2>
+  <p class="sd">Cuatro dimensiones de conocimiento exploradas durante la semana.</p>
+  <div class="ap-grid">
+    <div class="apc rv">
+      <div class="ap-icon">⚙️</div>
+      <h3>Ingeniería</h3>
+      <div class="ap-items">
+        <div class="ap-row"><div class="ap-dot"></div>Resolución de problemas sin respuestas inmediatas</div>
+        <div class="ap-row"><div class="ap-dot"></div>Investigación y aprendizaje continuo como metodología</div>
+        <div class="ap-row"><div class="ap-dot"></div>Coordinación multidisciplinaria en proyectos complejos</div>
+        <div class="ap-row"><div class="ap-dot"></div>Termodinámica y transferencia de calor aplicadas</div>
+      </div>
+    </div>
+    <div class="apc rv d1">
+      <div class="ap-icon">🧭</div>
+      <h3>Liderazgo</h3>
+      <div class="ap-items">
+        <div class="ap-row"><div class="ap-dot"></div>Comunicación como herramienta de gestión</div>
+        <div class="ap-row"><div class="ap-dot"></div>Confianza y honestidad en relaciones con clientes</div>
+        <div class="ap-row"><div class="ap-dot"></div>Toma de decisiones estratégicas y adaptación organizacional</div>
+        <div class="ap-row"><div class="ap-dot"></div>Crecimiento sostenible mediante reinvención continua</div>
+      </div>
+    </div>
+    <div class="apc rv d2">
+      <div class="ap-icon">📊</div>
+      <h3>Negocios</h3>
+      <div class="ap-items">
+        <div class="ap-row"><div class="ap-dot"></div>Equilibrio entre técnica, operaciones y comercial</div>
+        <div class="ap-row"><div class="ap-dot"></div>Indicadores financieros y su impacto en el crecimiento</div>
+        <div class="ap-row"><div class="ap-dot"></div>Valor estratégico de FrioMamut como producto IoT</div>
+        <div class="ap-row"><div class="ap-dot"></div>Integración entre áreas para lograr objetivos comunes</div>
+      </div>
+    </div>
+    <div class="apc rv d3">
+      <div class="ap-icon">🤖</div>
+      <h3>Inteligencia Artificial</h3>
+      <div class="ap-items">
+        <div class="ap-row"><div class="ap-dot"></div>IA como amplificador de capacidades estratégicas</div>
+        <div class="ap-row"><div class="ap-dot"></div>Optimización de procesos organizacionales</div>
+        <div class="ap-row"><div class="ap-dot"></div>Uso en desarrollo de business cases y análisis</div>
+        <div class="ap-row"><div class="ap-dot"></div>Innovación en entornos industriales tradicionales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section id="personas">
+  <div class="sl">Interacciones</div>
+  <h2 class="sh">Personas y áreas conocidas</h2>
+  <p class="sd">Líderes con quienes tuve la oportunidad de interactuar durante la semana.</p>
+  <div class="pe-grid">
+    <div class="pec rv">
+      <div class="pe-av">👤</div>
+      <div class="pe-name">Andrés</div>
+      <div class="pe-role">APL</div>
+      <div class="pe-area">Supervisión · Practicum</div>
+      <div class="pe-div"></div>
+      <div class="pe-ls">
+        <div class="pe-l">Definición de rol y objetivos del practicum</div>
+        <div class="pe-l">Visión general de la organización y sus áreas</div>
+        <div class="pe-l">Contexto estratégico de la práctica</div>
+      </div>
+    </div>
+    <div class="pec rv d1">
+      <div class="pe-av">👤</div>
+      <div class="pe-name">Daniel Fuentes</div>
+      <div class="pe-role">Gerente de Operaciones</div>
+      <div class="pe-area">Operaciones</div>
+      <div class="pe-div"></div>
+      <div class="pe-ls">
+        <div class="pe-l">Integración entre ingeniería y operaciones</div>
+        <div class="pe-l">Flujo operativo de proyectos de refrigeración</div>
+        <div class="pe-l">Decisiones que equilibran técnica y negocio</div>
+      </div>
+    </div>
+    <div class="pec rv d2">
+      <div class="pe-av">👤</div>
+      <div class="pe-name">Pablo</div>
+      <div class="pe-role">Gerente de Ingeniería</div>
+      <div class="pe-area">Ingeniería</div>
+      <div class="pe-div"></div>
+      <div class="pe-ls">
+        <div class="pe-l">Estructura y funcionamiento del área técnica</div>
+        <div class="pe-l">Casos reales de desafíos de ingeniería</div>
+        <div class="pe-l">Cultura de investigación y aprendizaje continuo</div>
+      </div>
+    </div>
+    <div class="pec rv d3">
+      <div class="pe-av">👤</div>
+      <div class="pe-name">Álvaro</div>
+      <div class="pe-role">CFO · Gte. Gral. Frioteam</div>
+      <div class="pe-area">Finanzas · Liderazgo</div>
+      <div class="pe-div"></div>
+      <div class="pe-ls">
+        <div class="pe-l">Historia y evolución de FrioPacking y Frioteam</div>
+        <div class="pe-l">Impacto de decisiones financieras en el crecimiento</div>
+        <div class="pe-l">Construcción de relaciones de confianza con clientes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEXIONES -->
+<section id="reflexiones">
+  <div class="sl" style="color:var(--teal)">Ideas clave</div>
+  <h2 class="sh">Reflexiones destacadas</h2>
+  <p class="sd">Conclusiones que condensan los aprendizajes más significativos de la semana.</p>
+  <div class="rf-grid">
+    <div class="rfc rv">
+      <div class="rf-cat">Ingeniería</div>
+      <blockquote>"La ingeniería no consiste en aplicar fórmulas, sino en desarrollar soluciones para problemas que muchas veces no tienen una respuesta inmediata."</blockquote>
+    </div>
+    <div class="rfc rv d1">
+      <div class="rf-cat">Liderazgo</div>
+      <blockquote>"La confianza y la honestidad son fundamentales para construir relaciones duraderas con los clientes y sostener el crecimiento de la empresa."</blockquote>
+    </div>
+    <div class="rfc rv d2">
+      <div class="rf-cat">Organización</div>
+      <blockquote>"Las organizaciones pueden enfrentar dificultades, aprender de sus errores y salir fortalecidas cuando cuentan con liderazgo y equipos comprometidos."</blockquote>
+    </div>
+    <div class="rfc rv d3">
+      <div class="rf-cat">Tecnología</div>
+      <blockquote>"La IA amplifica la capacidad de análisis y aprendizaje, pero su verdadero valor depende de cómo las personas la utilizan estratégicamente."</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEXIÓN FINAL -->
+<section id="final">
+  <div class="sl">Cierre</div>
+  <h2 class="sh">Reflexión final</h2>
+  <div class="fn-grid">
+    <div class="fn-txt rv">
+      <p>Esta primera semana en FrioPacking permitió conocer una industria completamente nueva y construir una visión más amplia de cómo funciona una empresa de ingeniería. Lo que más llamó la atención fue cómo <strong>operaciones, finanzas, liderazgo e innovación trabajan juntas</strong> para alcanzar un objetivo común.</p>
+      <p>La actividad del business case fue especialmente valiosa: permitió aplicar herramientas de inteligencia artificial en un contexto empresarial real, desarrollando una propuesta estructurada en equipo dentro de una sola sesión.</p>
+      <p>Algo que destacó de FrioPacking fue su <strong>cultura de colaboración</strong>. Desde el primer día fue evidente la disposición del equipo para compartir conocimiento y trabajar hacia objetivos comunes. Las capacitaciones y el acceso directo a líderes de distintas áreas demuestran que la empresa se preocupa también por el <strong>crecimiento de sus colaboradores</strong>.</p>
+    </div>
+    <div class="fn-side rv d1">
+      <div class="fnc">
+        <div class="fnc-h">🔍 Lo más sorprendente</div>
+        <div class="fnc-s">El alcance tecnológico de FrioPacking más allá de la refrigeración convencional — especialmente FrioMamut como producto IoT industrial.</div>
+      </div>
+      <div class="fnc">
+        <div class="fnc-h">🔄 Cambio de perspectiva</div>
+        <div class="fnc-s">La ingeniería industrial no es solo técnica: es estrategia, liderazgo y relaciones humanas operando en simultáneo.</div>
+      </div>
+      <div class="fnc">
+        <div class="fnc-h">⭐ Cultura destacada</div>
+        <div class="fnc-s">El equipo de FrioPacking demuestra una disposición genuina al aprendizaje compartido y al crecimiento colectivo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASOS -->
+<section id="proximos">
+  <div class="sl">Semanas siguientes</div>
+  <h2 class="sh">Próximos pasos</h2>
+  <p class="sd">Objetivos planificados para continuar el practicum.</p>
+  <div class="px-list">
+    <div class="pxi rv">
+      <div class="px-n">01</div>
+      <div><h4>Visitas a clientes y proyectos en campo</h4>
+        <p>Acompañar al equipo en visitas planificadas para observar la dinámica operativa en terreno y las relaciones comerciales en acción.</p>
+      </div>
+    </div>
+    <div class="pxi rv d1">
+      <div class="px-n">02</div>
+      <div><h4>Profundizar en FrioMamut</h4>
+        <p>Estudiar la arquitectura tecnológica, el modelo de negocio y los retos de escalabilidad de FrioMamut como producto IoT.</p>
+      </div>
+    </div>
+    <div class="pxi rv d2">
+      <div class="px-n">03</div>
+      <div><h4>Participar en proyectos de ingeniería activos</h4>
+        <p>Integrarse en el seguimiento de proyectos reales para aplicar conceptos de sistemas de refrigeración con el equipo técnico.</p>
+      </div>
+    </div>
+    <div class="pxi rv d3">
+      <div class="px-n">04</div>
+      <div><h4>Desarrollar una propuesta de valor concreta</h4>
+        <p>Identificar una oportunidad de mejora dentro de la organización y estructurar una propuesta que integre ingeniería, tecnología y estrategia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-l">
+    <img class="ft-logo" src="logo_friopacking.png" alt="Grupo Friopacking"/>
+    <div class="ft-info">
+      <strong>Laura Rojas</strong>
+      <p>Trainee de Refrigeración Industrial · Practicum FrioPacking 2026 · Boston University</p>
+    </div>
+  </div>
+  <div class="ft-r">
+    <a class="ft-a" href="https://www.linkedin.com/in/laurarojbu" target="_blank">💼 LinkedIn</a>
+    <a class="ft-a" href="mailto:lrojas@grupofriopacking.pe">✉️ lrojas@grupofriopacking.pe</a>
+  </div>
+</footer>
+
+<script>
+function toggleDay(item){
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// counters
+const cobs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const ns=document.querySelectorAll('.rc-n');
+      [[4,''],[6,'+'],[4,''],[1,'']].forEach(([t,s],i)=>{
+        let c=0;
+        const tmr=setInterval(()=>{c=Math.min(c+1,t);ns[i].textContent=c+s;if(c>=t)clearInterval(tmr);},80);
+      });
+      cobs.disconnect();
+    }
+  });
+},{threshold:.3});
+const rs=document.getElementById('resumen');
+if(rs)cobs.observe(rs);
+
+// nav highlight
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('section[id]').forEach(s=>{if(scrollY>=s.offsetTop-90)cur=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')===`#${cur}`);
+  });
+});
+</script>
+</body>
+</html>
